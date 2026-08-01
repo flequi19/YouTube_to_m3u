@@ -2,4 +2,4 @@
 ~~ FORMAT: <channel name> | <group name> | <logo> | <tvg-id>
 
 Metallica | Music | https://upload.wikimedia.org/wikipedia/en/2/2c/Metallica_logo.png | metallica.yt
-https://www.youtube.com/watch?v=1fz60gNnSdU
+https://www.youtube.com/live/1fz60gNnSdU?si=-vBUIsfVlJPJaaOq
