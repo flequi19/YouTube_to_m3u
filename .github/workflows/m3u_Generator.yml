@@ -2,7 +2,7 @@ name: M3U generator
 
 on:
   schedule:
-    - cron: '0 */3 * * *'
+    - cron: '0 */3 * * *'   # corre cada 3 horas
   pull_request:
     branches:
       - main
@@ -14,21 +14,18 @@ jobs:
     steps:
       - uses: actions/checkout@v4
 
-      - name: config
-        run: |
-          git config --global user.email "action@github.com"
-          git config --global user.name "GitHub Action"
-
-      - name: Main
-        run: |
-          pwd
-          chmod +x autorun.sh
-          ./autorun.sh
-
-      - name: commit & push
+      - name: Config git
         run: |
           git config --global user.name "github-actions[bot]"
           git config --global user.email "github-actions[bot]@users.noreply.github.com"
+
+      - name: Run autorun.sh
+        run: |
+          chmod +x autorun.sh
+          ./autorun.sh
+
+      - name: Commit & push
+        run: |
           git add -A
           git commit -m "links are updated" || echo "No changes to commit"
           git push
