@@ -1,11 +1,15 @@
 #!/bin/bash
+OUTFILE="youtube.m3u8"
 
-echo $(dirname $0)
+# Crear cabecera del archivo M3U
+echo "#EXTM3U" > $OUTFILE
 
-python3 -m pip install requests
+# URL de YouTube (ejemplo: Metallica)
+URL="https://www.youtube.com/watch?v=1fz60gNnSdU"
 
-cd $(dirname $0)/scripts/
+# Obtener el stream con yt-dlp
+STREAM_URL=$(yt-dlp -g "$URL" 2>/dev/null || echo "ERROR")
 
-python3 youtube_m3ugrabber.py > ../youtube.m3u
-
-echo m3u grabbed
+# Agregar entrada al archivo
+echo "#EXTINF:-1, Metallica" >> $OUTFILE
+echo "$STREAM_URL" >> $OUTFILE
