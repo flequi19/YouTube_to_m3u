@@ -1,11 +1,13 @@
 #!/bin/bash
 
-echo $(dirname $0)
+SCRIPT_DIR=$(dirname "$0")
+OUTFILE="$SCRIPT_DIR/youtube.m3u"
 
-python3 -m pip install requests
+# Instalar dependencias necesarias
+python3 -m pip install --upgrade pip
+python3 -m pip install requests yt-dlp
 
-cd $(dirname $0)/scripts/
+# Ejecutar el script dentro de scripts/
+python3 "$SCRIPT_DIR/scripts/youtube_m3ugrabber.py" > "$OUTFILE" || echo "#EXTM3U\n#EXTINF:-1, ERROR\nERROR" > "$OUTFILE"
 
-python3 youtube_m3ugrabber.py > ../youtube.m3u
-
-echo m3u grabbed
+echo "✅ Archivo M3U generado en $OUTFILE"
